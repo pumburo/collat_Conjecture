@@ -1,63 +1,99 @@
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
 
-quest = '''
-Would you like to generate graph?(1/2)
+initialValue = int(input("Type initial value and press enter." + "\n"))
+endValue = int(input("Type end value and press enter.(0 for endless) " + "\n"))
+req1 = '''
+Would you like to see all steps?
 1-Yes
 2-No
 '''
-print(quest)
-qres = int(input())
-value = int(input("Type start value: "))
-stopValue = int(input("Type stop value(0 for endless.): "))
+print(req1)
+stepsResponse = int(input())
+req2 = '''
+Would you like to generate graph?
+1-Yes
+2-No
+'''
+print(req2)
+graphResponse = int(input())
+
+controlValue = 0
+graphCounter = 0
 valueArray = []
 counterArray = []
-cnt = 0
-
-if value == 1:
-    value+=1
+testVar = 0
 
 try:
-    while True:
-        print(str(value) + " is calculating.")
-        newValue = value
-        counter = 0        
+    if initialValue == 1 or initialValue == 0:
+        print("\n" + "Trying to calculate", initialValue, "is meaningless. Starting from 2." + "\n")
+        initialValue = 2
 
-        while ( newValue != 1 ):
+    while (initialValue <= endValue or endValue == 0):
+        controlValue = initialValue
+        #graphCounter+=1
+        #valueArray.append(initialValue)
+        greatestValue = 0
+
+        if stepsResponse == 1:
+            print(initialValue, "is calculating.")
+        counter = 0
+
+        while (controlValue != 1):
             counter+=1
-            left = newValue % 2
-
-            if value == newValue:
-            	topValue = newValue
+            left = controlValue % 2
             
             if left == 0:
-                newValue = newValue / 2
+                controlValue = controlValue / 2
             elif left != 0:
-                newValue = newValue * 3
-                newValue+=1
-
-            if topValue <= newValue:
-            	topValue = newValue
+                controlValue = controlValue * 3
+                controlValue+=1
             
-            print(newValue)
+            if stepsResponse == 1:
+                print("Step " + str(counter) + ":", int(controlValue))
+            
+            if controlValue > greatestValue:
+                greatestValue = controlValue
 
-            if newValue == 1:
-                print(str(value) + " is calculated in " + str(counter) + " steps." + " Greatest value is " + str(int(topValue)) + ".")
-                print(" \n", " \n", " \n", " \n")
+            graphCounter+=1
+            valueArray.append(controlValue)
+            counterArray.append(graphCounter)
 
-            cnt+=1
-            valueArray.append(newValue)
-            counterArray.append(cnt)
+            #print("Counter array:", counterArray, "Value array:", valueArray)
 
-        if value == stopValue:
-        	break
-        
-        value+=1
+        if stepsResponse == 1:
+            if initialValue != endValue:
+                print(initialValue, "is calculated in", counter, "steps. Greatest value is:", int(greatestValue), "\n" * 3)
+            elif initialValue == endValue:
+                if stepsResponse == 1:
+                    print(str(initialValue), "is calculated in", counter, "steps. Greatest value is:", int(greatestValue))
+                elif stepsResponse == 2:
+                    print("\n" * 3 + str(initialValue), "is calculated in", counter, "steps. Greatest value is:", int(greatestValue))
+
+        elif stepsResponse == 2:
+            print(initialValue, "is calculated in", counter, "steps. Greatest value is:", int(greatestValue))
+
+        initialValue+=1
+
+    if graphResponse == 1:
+        figure(num=None, figsize=(50, 15), dpi=80, facecolor='gray')
+        plt.plot(counterArray, valueArray, '-ok')
+        plt.show()
+    
+    testVar+=1
+
 
 except:
-    print("Procces stoped by user.")
+    if testVar != 0:
+        print("Procces stoped by user.")
+    
+    try:
+        if graphResponse == 1:
+            figure(num=None, figsize=(50, 15), dpi=80, facecolor='gray')
+            plt.plot(counterArray, valueArray, "-ok")
+            plt.show()
+        elif graphResponse == 2:
+            print("Procces stoped by user.")
 
-if qres == 1:
-	figure(num=None, figsize=(50, 15), dpi=80, facecolor='gray')
-	plt.plot(counterArray, valueArray, '-ok')
-	plt.show()
+    except:
+        print("BOOOOM!!!" + "\n" + "Program become bomb.")
