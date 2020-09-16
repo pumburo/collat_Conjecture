@@ -40,6 +40,7 @@ try:
         if stepsResponse == 1:
             print(initialValue, "is calculating.")
         counter = 0
+        graphVar+=1
 
         while (controlValue != 1):
             counter+=1
@@ -83,7 +84,6 @@ try:
         plt.show()
         graphVar+=1
     
-    testVar+=1
 
 
 except:
@@ -91,7 +91,9 @@ except:
         print("Procces stoped by user.")
     
     try:
-        if graphResponse == 1 && graphVar != 0:
+        lastCalculatedValue = initialValue - 1
+        print("Last calcualted value is:", lastCalculatedValue)
+        if graphResponse == 1 and graphVar != 0:
             figure(num=None, figsize=(50, 15), dpi=80, facecolor='gray')
             plt.plot(counterArray, valueArray, "-ok")
             plt.show()
