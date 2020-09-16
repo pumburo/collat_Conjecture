@@ -62,8 +62,6 @@ try:
             valueArray.append(controlValue)
             counterArray.append(graphCounter)
 
-            #print("Counter array:", counterArray, "Value array:", valueArray)
-
         if stepsResponse == 1:
             if initialValue != endValue:
                 print(initialValue, "is calculated in", counter, "steps. Greatest value is:", int(greatestValue), "\n" * 3)
@@ -82,9 +80,7 @@ try:
         figure(num=None, figsize=(50, 15), dpi=80, facecolor='gray')
         plt.plot(counterArray, valueArray, '-ok')
         plt.show()
-        graphVar+=1
-    
-
+        graphVar = 0
 
 except:
     if testVar != 0:
@@ -93,7 +89,7 @@ except:
     try:
         lastCalculatedValue = initialValue - 1
         print("Last calcualted value is:", lastCalculatedValue)
-        if graphResponse == 1 and graphVar != 0:
+        if graphResponse == 1 and graphVar == 0:
             figure(num=None, figsize=(50, 15), dpi=80, facecolor='gray')
             plt.plot(counterArray, valueArray, "-ok")
             plt.show()
