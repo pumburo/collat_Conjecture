@@ -23,6 +23,7 @@ graphCounter = 0
 valueArray = []
 counterArray = []
 testVar = 0
+graphVar = 0
 
 try:
     if initialValue == 1 or initialValue == 0:
@@ -31,8 +32,9 @@ try:
 
     while (initialValue <= endValue or endValue == 0):
         controlValue = initialValue
-        #graphCounter+=1
-        #valueArray.append(initialValue)
+        graphCounter+=1
+        counterArray.append(graphCounter)
+        valueArray.append(initialValue)
         greatestValue = 0
 
         if stepsResponse == 1:
@@ -79,6 +81,7 @@ try:
         figure(num=None, figsize=(50, 15), dpi=80, facecolor='gray')
         plt.plot(counterArray, valueArray, '-ok')
         plt.show()
+        graphVar+=1
     
     testVar+=1
 
@@ -88,7 +91,7 @@ except:
         print("Procces stoped by user.")
     
     try:
-        if graphResponse == 1:
+        if graphResponse == 1 && graphVar != 0:
             figure(num=None, figsize=(50, 15), dpi=80, facecolor='gray')
             plt.plot(counterArray, valueArray, "-ok")
             plt.show()
@@ -105,6 +108,7 @@ except:
          `~~`\ ' . /`~~`
               ;   ;
               /   \
-_____________/_ __ \_____________
+             /     \
+____________/__ __ _\_____________
         '''
         print(explode)
