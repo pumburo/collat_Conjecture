@@ -1,5 +1,10 @@
-import matplotlib.pyplot as plt
-from matplotlib.pyplot import figure
+try:
+    import matplotlib.pyplot as plt
+    from matplotlib.pyplot import figure
+    libImp = 1
+except:
+    print("matplotlib is doesn'n exist. If you want to generate graph, you need to install this libary.")
+    libImp = 2
 
 initialValue = int(input("Type initial value and press enter." + "\n"))
 endValue = int(input("Type end value and press enter.(0 for endless) " + "\n"))
@@ -10,19 +15,22 @@ Would you like to see all steps?
 '''
 print(req1)
 stepsResponse = int(input())
-req2 = '''
+
+if libImp == 1:
+    req2 = '''
 Would you like to generate graph?
 1-Yes
 2-No
-'''
-print(req2)
-graphResponse = int(input())
+    '''
+    print(req2)
+    graphResponse = int(input("\n"))
+elif libImp == 2:
+    graphResponse = 2
 
 controlValue = 0
 graphCounter = 0
 valueArray = []
 counterArray = []
-testVar = 0
 graphVar = 0
 
 try:
@@ -82,10 +90,7 @@ try:
         plt.show()
         graphVar = 0
 
-except:
-    if testVar != 0:
-        print("Procces stoped by user.")
-    
+except:    
     try:
         lastCalculatedValue = initialValue - 1
         print("Last calcualted value is:", lastCalculatedValue)
