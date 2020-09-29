@@ -3,14 +3,14 @@
 int main(){
     int initialValue;
     int endValue;
-    printf("\n\tType initial value: ", initialValue);
+    printf("\n%s", "Type initial value: ");
     scanf("%d", &initialValue);
-    printf("\n\tType end value: ", endValue);
+    printf("\n%s", "Type end value: ");
     scanf("%d", &endValue);
     int controlValue;
-    while (initialValue <= endValue){
+    while (initialValue <= endValue || endValue == 0){
         printf("\n%s", "");
-        printf("\nCalculation start for ", initialValue); printf("%d", initialValue); printf("%s", ".");
+        printf("\n%s", "Calculation start for "); printf("%d", initialValue); printf("%s", ".");
         controlValue = initialValue;
         int stepCounter = 0;
         int greatestValue = 0;
