@@ -102,7 +102,7 @@ except:
             print("Procces stoped by user.")
 
     except:
-        print("BOOOOM!!!" + "\n" + "Program explode.")
+        print("BOOOOM!!!" + "\n" + "Program is explode.")
         explode = '''
           _ ._  _ , _ ._
         (_ ' ( `  )_  .__)
