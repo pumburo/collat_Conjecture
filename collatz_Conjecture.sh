@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "Type initial value: "
 read initialValue
 echo "Type end value: "
